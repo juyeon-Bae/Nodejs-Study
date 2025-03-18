@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-study",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juyeon-Bae/Nodejs-Study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juyeon-Bae/Nodejs-Study/issues"
+  },
+  "homepage": "https://github.com/juyeon-Bae/Nodejs-Study#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
