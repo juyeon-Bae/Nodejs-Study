@@ -8,9 +8,8 @@ app.use(express.json());
 
 
 // 루트 경로에 대한 GET 요청을 처리합니다.
-app.post('/swag', (req, res) => {
-  // 클라이언트에게 'Hello, World!' 메시지를 보냅니다.
-  res.send(req.body);
+app.get('/swag/:person', (req, res) => { //사용자가 입력한 값은 req, res는 서버에서 사용자에게 응답할 때 사용
+  res.send(req.params.person); //사용자가 입력한 값은 req
 });
 
 // 서버가 3000번 포트에서 요청을 기다리게 합니다.
