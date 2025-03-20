@@ -5,6 +5,13 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+app.get('/swag', (req, res)=>{
+  res.send("get swag") //응답
+})
+
+app.post('/swag', (req, res)=>{
+  res.send("post swag")
+})
 
 
 // 루트 경로에 대한 GET 요청을 처리합니다.
