@@ -16,6 +16,7 @@
   "homepage": "https://github.com/juyeon-Bae/Nodejs-Study#readme",
   "description": "",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^4.21.2",
     "nodejs-study": "file:"
   }
