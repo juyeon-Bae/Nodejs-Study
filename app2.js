@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql2');
 
+//보안이 필요한 코드는 .env에 옮겨 놓고 공개하지 않는다.
+const dotenv = require('dotenv');
+dotenv.config();
 const app = express()
 
 app.set('view engine', 'ejs')
@@ -11,10 +14,10 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views')) 
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user:'root',
-    password:'mirim3',
-    database:'traveldb'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database:process.env.DB_NAME
 })
 
 //db연결
