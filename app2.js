@@ -23,22 +23,28 @@ const db = mysql.createConnection({
 //db연결
 db.connect(error => {
     if(error){
-        console.error('mysql 연결 실패')
+        console.error('MySQL 연결 실패')
     }else{
-        console.log('mysql 연결 성공')
+        console.log('MySQL 연결 성공')
     }
 })
-
-
-const travelList = ['뉴욕','파리','내집','도쿄']
 
 app.get('/', (req, res)=>{
     
 })
 
 app.get('/travel', (req, res)=>{
-    res.render('travle',{travelList})
-})
+    const query = 'SELECT  id, name FROM travellist';
+    db.query(query, (err, results)=>{
+        if(err){
+            console.error('데이터베이스 쿼리 실패: ', err);
+            res.status(500).send('내부 서버 에러');
+            return;
+        }
+        const travelList = results;
+        res.render('travle',{travelList})      
+    })
+});
 
 
 app.use((req,res)=>{
