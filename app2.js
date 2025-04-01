@@ -51,7 +51,7 @@ app.get('/travel/:id', (req, res)=>{
     const travelId = req.params.id;//req.params.id를 통해 URL에서 전달된 여행지 ID를 가져옴
     const _query = 'SELECT * FROM travelList WHERE id =?'; //travelID를 사용하여 travelList 테이블에서 해당 여행지 정보를 조회하는 쿼리문
  
-    db.query(_query, [travelId], (err, results)=>{ //여행지 ID를 쿼리문에 전달하여 해당 여행지 정보를 가져옴
+    db.query(_query, [travelId], (err, results)=>{ //여행지 ID를 쿼리문에 전달하여 해당 여행지 정보를 가져옴, travleId(sql 인젝션 방지 ?)
         if(err){
             console.error('데이터베이스 쿼리 실패: ', err);
             res.status(500).send('내부 서버 에러');
