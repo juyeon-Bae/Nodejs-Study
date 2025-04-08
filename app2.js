@@ -50,7 +50,7 @@
                 return;
             }
             const travelList = results;
-            res.render('travle',{travelList})      
+            res.render('travel',{travelList})      
         })
     });
 
@@ -117,6 +117,7 @@
         })
     })
       
+    //수정
     app.get('/travel/:id/edit', (req, res)=>{
         const travelId = req.params.id; 
         const _query = 'SELECT * FROM travelList WHERE id =?';  
@@ -135,6 +136,28 @@
             }
             const travel = results[0]; //여행지 정보가 존재할 경우, 첫 번째 결과를 travel 변수에 저장
             res.render('editTravel', { travel });  
+        })
+    })
+
+    //삭제
+    app.delete('/travel/:id/', (req, res)=>{
+        const travelId = req.params.id; 
+        const _query = 'DELETE * FROM travelList WHERE id =?';  
+    
+        db.query(_query, [travelId], (err, results)=>{ 
+            if(err){
+                console.error('데이터베이스 쿼리 실패: ', err);
+                res.status(500).send('내부 서버 에러');
+                return;
+            }
+
+            //여행지 정보가 없을 경우 처리
+            if(results.length === 0){
+                res.status(404).send('여행지 정보를 찾을 수 없습니다.');  
+                return;
+            }
+            const travel = results[0]; //여행지 정보가 존재할 경우, 첫 번째 결과를 travel 변수에 저장
+            res.render('deleteSuccess', { travel });  
         })
     })
 

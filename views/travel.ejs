@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>여행지title>
+    <title>여행지title
 </head>
 <body>
     <ul>
@@ -11,6 +11,9 @@
         <li>
            <a href="/travel/<%= travel.id %>"><%= travel.name %></a>
            <a href="/travel/<%= travel.id %>/edit">수정
+            <form action="/travel/<%= travel.id %>?_method=DELETE" method="POST">
+                <button type="submit" style="display: inline;">삭제</button>
+            </form>
         </li>
          <% }) %>
     </ul>
