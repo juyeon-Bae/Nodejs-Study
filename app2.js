@@ -4,9 +4,12 @@
 
     //보안이 필요한 코드는 .env에 옮겨 놓고 공개하지 않는다.
     const dotenv = require('dotenv');
+    const methodOverride = require('method-override'); //html은 put, post만 돼서
+
     dotenv.config();
     const app = express()
-
+    
+    app.use(methodOverride('_method')) //PUT, DELETE, post? 요청을 위한 미들웨어 설정
     //body-parser 미들웨어를 사용하여 요청 본문을 파싱
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
@@ -113,7 +116,28 @@
             res.render('updateSuccess', { travel });  
         })
     })
-        
+      
+    app.get('/travel/:id/edit', (req, res)=>{
+        const travelId = req.params.id; 
+        const _query = 'SELECT * FROM travelList WHERE id =?';  
+    
+        db.query(_query, [travelId], (err, results)=>{ 
+            if(err){
+                console.error('데이터베이스 쿼리 실패: ', err);
+                res.status(500).send('내부 서버 에러');
+                return;
+            }
+
+            //여행지 정보가 없을 경우 처리
+            if(results.length === 0){
+                res.status(404).send('여행지 정보를 찾을 수 없습니다.');  
+                return;
+            }
+            const travel = results[0]; //여행지 정보가 존재할 경우, 첫 번째 결과를 travel 변수에 저장
+            res.render('editTravel', { travel });  
+        })
+    })
+
     app.use((req,res)=>{
         
     })

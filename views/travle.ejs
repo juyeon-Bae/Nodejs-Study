@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>야행지</title>
+    <title>여행지title>
 </head>
 <body>
     <ul>
        <% travelList.forEach(travel => { %>
         <li>
            <a href="/travel/<%= travel.id %>"><%= travel.name %></a>
+           <a href="/travel/<%= travel.id %>/edit">수정
         </li>
          <% }) %>
     </ul>
