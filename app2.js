@@ -142,7 +142,7 @@
     //삭제
     app.delete('/travel/:id/', (req, res)=>{
         const travelId = req.params.id; 
-        const _query = 'DELETE * FROM travelList WHERE id =?';  
+        const _query = 'DELETE FROM travelList WHERE id =?';  
     
         db.query(_query, [travelId], (err, results)=>{ 
             if(err){
