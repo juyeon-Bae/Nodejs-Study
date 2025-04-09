@@ -37,9 +37,6 @@
         }
     })
 
-    app.get('/', (req, res)=>{
-        
-    })
 
     app.get('/travel', (req, res)=>{
         const query = 'SELECT  id, name FROM travellist';
@@ -91,7 +88,7 @@
         })
     });
 
-    app.get('/add-travel',(req, res)=>{
+    app.get('/travel/add',(req, res)=>{
         res.render('addTravel');
     })
 
@@ -161,8 +158,10 @@
         })
     })
 
+    //use는 모든 메소드 요청에 대해(use) + 모든 경로 
+    // (위 코드에 해당하지 않는 요청들에 대해) 
     app.use((req,res)=>{
-        
+        res.status(404).send('페이지를 찾을 수 없습니다(404notfound).');
     })
 
     app.listen(3001, () => {
